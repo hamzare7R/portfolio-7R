@@ -12,7 +12,13 @@ const ROOT = __dirname;
 const SITE = (process.env.SITE_URL || 'https://7r01h-portfolio.vercel.app').replace(/\/$/, '');
 const LANGS = ['ar', 'en', 'de', 'fr'];
 const DEF = 'ar';
-const read = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'));
+const read = (f) => {
+  // Accept both content/<file> and a flat layout (<file> next to build.js).
+  const candidates = [path.join(ROOT, f), path.join(ROOT, path.basename(f))];
+  const found = candidates.find((c) => fs.existsSync(c));
+  if (!found) throw new Error('File not found: ' + f + ' (looked in: ' + candidates.join(', ') + ')');
+  return JSON.parse(fs.readFileSync(found, 'utf8'));
+};
 
 const ui = read('content/ui.json');
 const cats = read('content/categories.json').categories.sort((a, b) => (a.order || 0) - (b.order || 0));
