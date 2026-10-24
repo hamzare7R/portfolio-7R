@@ -336,10 +336,10 @@ title: { ar: "هوية Nutrivibe", en: "Nutrivibe brand identity", de: "Nutrivib
       year: 2026,
       featured: false,
       cover: "images/MockupR2.png",
-      gallery: ["works/rahalat-logo.jpeg", "works/rahalat-1.jpeg", "works/rahalat-2.jpeg", "works/rahalat-3.jpeg"],
+      gallery: ["images/pictureR1.png", "images/pictureR4.png", "images/pictureR5.png", "images/pictureR2.png", "images/pictureR3.png"],
       liveUrl: "https://rahalat-shop.vercel.app/",
-      tools: ["VS Code", "HTML", "CSS", "JavaScript"],
-      duration: "8–12",
+      tools: ["VS Code", "HTML", "CSS", "JavaScript", "AliSave PLUS"],
+      duration: "3–7",
       priceFrom: null,
       tags: ["shop", "ui", "affiliate", "bilingual"],
       title: { ar: "متجر Rahalat الإلكتروني", en: "Rahalat online shop", de: "Rahalat Online-Shop", fr: "Boutique en ligne Rahalat" },
@@ -373,8 +373,8 @@ title: { ar: "هوية Nutrivibe", en: "Nutrivibe brand identity", de: "Nutrivib
       category: "web",
       year: 2026,
       featured: false,
-      cover: "works/naturivibe.png",
-      gallery: ["works/naturivibe.png"],
+      cover: "images/MockupNUTRI.png",
+      gallery: ["images/NUTRI1.png", "images/NUTRI2.png", "images/NUTRI3.png", "images/NUTRI4.png", ],
       liveUrl: null,
       tools: ["VS Code", "HTML", "CSS", "JavaScript"],
       duration: "6–10",
@@ -406,6 +406,47 @@ title: { ar: "هوية Nutrivibe", en: "Nutrivibe brand identity", de: "Nutrivib
         fr: ["Calculateur de calories interactif", "Catalogue de repas", "Commande par WhatsApp"],
       },
     },
+
+    {
+      id: "naturivibe-web",
+      category: "web",
+      year: 2026,
+      featured: false,
+      cover: "images/MockupNUTRI.png",
+      gallery: ["images/NUTRI1.png", "images/NUTRI2.png", "images/NUTRI3.png", "images/NUTRI4.png", ],
+      liveUrl: null,
+      tools: ["VS Code", "HTML", "CSS", "JavaScript"],
+      duration: "6–10",
+      priceFrom: null,
+      tags: ["ui", "calculator", "ordering"],
+      title: { ar: "موقع NaturiVibe للوجبات الصحية", en: "NaturiVibe healthy meals site", de: "NaturiVibe – gesunde Mahlzeiten", fr: "Site NaturiVibe – repas sains" },
+      tagline: {
+        ar: "حاسبة سعرات حرارية و كتالوج وجبات مع الطلب عبر واتساب.",
+        en: "A calorie calculator and meal catalog with WhatsApp ordering.",
+        de: "Kalorienrechner und Menü-Katalog mit Bestellung per WhatsApp.",
+        fr: "Calculateur de calories et catalogue de repas avec commande WhatsApp.",
+      },
+      description: {
+        ar: "منصّة وجبات صحية موجّهة للرياضيين في طنجة. تضم حاسبة للسعرات و العناصر الغذائية حسب هدف المستخدم، كتالوج وجبات بأسعار بالدرهم، و سلة طلبات تُرسل جاهزة عبر واتساب بدل بوابة دفع، مع توافق كامل من الجوال إلى سطح المكتب.",
+        en: "A healthy-meal platform for athletes in Tangier. It includes a calorie and macro calculator driven by the user's goal, a meal catalog priced in MAD, and an order cart that sends through WhatsApp instead of a payment gateway, fully responsive from mobile to desktop.",
+        de: "Eine Plattform für gesunde Mahlzeiten für Sportler in Tanger. Sie enthält einen Kalorien- und Makro-Rechner nach Nutzerziel, einen Menü-Katalog in MAD und einen Warenkorb, der die Bestellung per WhatsApp statt eines Bezahlsystems sendet – vollständig responsiv.",
+        fr: "Plateforme de repas sains pour sportifs à Tanger. Elle comprend un calculateur de calories et de macros selon l'objectif de l'utilisateur, un catalogue de repas en dirhams et un panier qui envoie la commande par WhatsApp au lieu d'une passerelle de paiement, entièrement responsive.",
+      },
+      process: [
+        { t: {"ar":"منطق الحساب","en":"Calculation logic","de":"Rechenlogik","fr":"Logique de calcul"}, d: {"ar":"حُسبت السعرات و العناصر الغذائية من هدف المستخدم بمعادلة بسيطة وشفافة.","en":"Calories and macros derived from the user's goal with a simple, transparent formula.","de":"Kalorien und Makros aus dem Nutzerziel mit einer einfachen, nachvollziehbaren Formel.","fr":"Calories et macros déduites de l'objectif via une formule simple et transparente."} },
+        { t: {"ar":"كتالوج الوجبات","en":"Meal catalog","de":"Menü-Katalog","fr":"Catalogue de repas"}, d: {"ar":"نُظّمت الوجبات بأسعار بالدرهم و صور و عناصر غذائية لكل وجبة.","en":"Meals organized with MAD pricing, photos and per-meal macro data.","de":"Mahlzeiten mit MAD-Preisen, Fotos und Makro-Daten je Gericht organisiert.","fr":"Repas organisés avec prix en dirhams, photos et macros par plat."} },
+        { t: {"ar":"مسار الطلب","en":"Order flow","de":"Bestellfluss","fr":"Parcours de commande"}, d: {"ar":"بدل بوابة الدفع، يُولّد الطلب رسالة واتساب جاهزة تلخّص السلة والعنوان.","en":"Instead of a payment gateway, the order generates a ready WhatsApp message summarizing cart and address.","de":"Statt Zahlungs-Gateway erzeugt die Bestellung eine fertige WhatsApp-Nachricht mit Warenkorb und Adresse.","fr":"Sans passerelle de paiement : la commande génère un message WhatsApp résumant panier et adresse."} },
+        { t: {"ar":"التجاوب","en":"Responsiveness","de":"Responsivität","fr":"Adaptativité"}, d: {"ar":"اختُبر الموقع من الجوال إلى سطح المكتب و عُدّلت الشبكة في نقاط التوقف.","en":"Tested from mobile to desktop, with the grid adjusted at each breakpoint.","de":"Von Mobile bis Desktop getestet, Raster an jedem Breakpoint nachjustiert.","fr":"Testé du mobile au desktop, grille ajustée à chaque point de rupture."} },
+      ],
+      deliverables: {
+        ar: ["حاسبة سعرات تفاعلية", "كتالوج وجبات", "طلب عبر واتساب"],
+        en: ["Interactive calorie calculator", "Meal catalog", "WhatsApp ordering"],
+        de: ["Interaktiver Kalorienrechner", "Menü-Katalog", "Bestellung per WhatsApp"],
+        fr: ["Calculateur de calories interactif", "Catalogue de repas", "Commande par WhatsApp"],
+      },
+    },
+
+
     {
       id: "cv-ats-suite",
       category: "career",
@@ -444,9 +485,6 @@ title: { ar: "هوية Nutrivibe", en: "Nutrivibe brand identity", de: "Nutrivib
         fr: ["CV PDF analysable", "Version modifiable", "Optimisation des mots-clés"],
       },
     },
-    {
-     
-      
-    },
+    
   ],
 };
