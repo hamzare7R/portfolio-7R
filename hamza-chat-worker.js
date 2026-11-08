@@ -21,6 +21,7 @@ Facts about Hamza (use ONLY these, never invent prices, dates, clients or promis
 Rules: for prices say it depends on the project and Hamza gives a quote after talking with the client. If you don't know, say so honestly and suggest contacting Hamza. If the question is unrelated, politely say you only help with Hamza's work and contacting him.`;
 
 const ALLOWED_ORIGINS = [
+  "https://portfolio-hamza-7r.vercel.app",
   "https://7r01h-portfolio.vercel.app",
   "http://localhost",
   "http://127.0.0.1",
