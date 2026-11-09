@@ -18,7 +18,9 @@
    
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body>\n
+    <canvas id="signalWaves" class="signal-waves" aria-hidden="true"></canvas>
+
     <div class="page-shell">
 
       <header class="site-header">
@@ -341,7 +343,100 @@
       <img src="" alt="Project preview" id="lightboxImg" />
     </div>
 
-    <script src="script.js"></script>
+
+    <script>
+      (() => {
+        const canvas = document.getElementById('signalWaves');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d', { alpha: true });
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let width = 0, height = 0, dpr = 1, raf = 0, time = 0;
+        let points = [];
+        const mobile = () => window.innerWidth < 700;
+
+        function resize() {
+          dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+          width = window.innerWidth;
+          height = window.innerHeight;
+          canvas.width = Math.round(width * dpr);
+          canvas.height = Math.round(height * dpr);
+          canvas.style.width = width + 'px';
+          canvas.style.height = height + 'px';
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          const columns = mobile() ? 17 : 30;
+          points = Array.from({ length: columns + 1 }, (_, i) => i / columns);
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, width, height);
+          const light = document.body.classList.contains('light-mode');
+          const cyan = light ? '35, 145, 174' : '91, 218, 238';
+          const violet = light ? '111, 99, 205' : '133, 119, 255';
+          const scale = mobile() ? 0.72 : 1;
+          const rows = mobile() ? 5 : 7;
+          const spacing = height / (rows + 1);
+
+          for (let row = 0; row < rows; row++) {
+            const phase = time * (0.00022 + row * 0.000018) + row * 0.82;
+            const amplitude = (15 + row * 3.5) * scale;
+            ctx.beginPath();
+            points.forEach((p, i) => {
+              const x = p * width;
+              const envelope = 0.35 + Math.pow(Math.abs(p - 0.5) * 2, 1.7) * 0.65;
+              const y = spacing * (row + 1)
+                + Math.sin(p * Math.PI * 2.15 + phase) * amplitude * envelope
+                + Math.sin(p * Math.PI * 4.2 - phase * 0.72) * amplitude * 0.24;
+              if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+            });
+            ctx.strokeStyle = 'rgba(' + (row % 2 ? violet : cyan) + ',' + (light ? 0.12 : 0.19) + ')';
+            ctx.lineWidth = row % 3 === 0 ? 1.15 : 0.7;
+            ctx.stroke();
+
+            points.forEach((p, i) => {
+              if ((i + row) % (mobile() ? 4 : 3) !== 0) return;
+              const x = p * width;
+              const envelope = 0.35 + Math.pow(Math.abs(p - 0.5) * 2, 1.7) * 0.65;
+              const y = spacing * (row + 1)
+                + Math.sin(p * Math.PI * 2.15 + phase) * amplitude * envelope
+                + Math.sin(p * Math.PI * 4.2 - phase * 0.72) * amplitude * 0.24;
+              const size = 1.1 + ((i + row) % 3) * 0.45;
+              ctx.beginPath();
+              ctx.arc(x, y, size, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(' + (row % 2 ? violet : cyan) + ',' + (light ? 0.34 : 0.62) + ')';
+              ctx.fill();
+            });
+          }
+
+          // A few drifting geometric signal nodes create a subtle digital signature.
+          const nodes = mobile() ? 8 : 16;
+          for (let i = 0; i < nodes; i++) {
+            const seed = i * 127.1;
+            const x = ((seed * 0.618 + time * (0.004 + (i % 3) * 0.001)) % (width + 80)) - 40;
+            const y = height * (0.12 + ((i * 37) % 76) / 100) + Math.sin(time * 0.0005 + i) * 12;
+            const s = 2 + (i % 3);
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(time * 0.00012 + i);
+            ctx.strokeStyle = 'rgba(' + (i % 2 ? violet : cyan) + ',' + (light ? 0.22 : 0.38) + ')';
+            ctx.lineWidth = 0.8;
+            ctx.strokeRect(-s, -s, s * 2, s * 2);
+            ctx.restore();
+          }
+        }
+
+        function animate(now) {
+          time = now || 0;
+          draw();
+          if (!reduceMotion.matches) raf = requestAnimationFrame(animate);
+        }
+        resize();
+        if (reduceMotion.matches) draw();
+        else raf = requestAnimationFrame(animate);
+        window.addEventListener('resize', () => { cancelAnimationFrame(raf); resize(); if (reduceMotion.matches) draw(); else raf = requestAnimationFrame(animate); }, { passive: true });
+        reduceMotion.addEventListener?.('change', () => { cancelAnimationFrame(raf); if (reduceMotion.matches) draw(); else raf = requestAnimationFrame(animate); });
+      })();
+    </script>
+\n    <script src="script.js"></script>
     <script type="module" src="chat.js"></script>
     <script type="module" src="store.js"></script>
   </body>
