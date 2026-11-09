@@ -2043,12 +2043,12 @@ body.light-mode .store-tag.clear {
   pointer-events: none;
   opacity: 0.88;
 }
-.page-shell,
-.chat-widget,
-.lightbox {
+.page-shell {
   position: relative;
   z-index: 1;
 }
+.chat-widget { z-index: 60; }
+.lightbox { z-index: 100; }
 .site-header {
   background: rgba(10, 15, 28, 0.62);
 }
